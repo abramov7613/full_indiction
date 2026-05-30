@@ -698,13 +698,13 @@ constexpr auto COUNCIL_1_6 = FATHERS_ECU_COUNCIL_1_6 ;
 
 MonthDay easter_date(const int year_number_in_full_indiction) ;
 MonthDay find_date(const int year_number_in_full_indiction, const DayProperty property) ;
-//int apostol_fast_length(const int year_number_in_full_indiction) ;
-//int get_n50(const int year_number_in_full_indiction, const MonthDay date) ;
-//bool is_date_of(const int year_number_in_full_indiction, const MonthDay date, const DayProperty property) ;
-//std::vector<MonthDay> find_all_dates(const int year_number_in_full_indiction, const DayProperty property) ;
-//std::vector<MonthDay> find_all_dates(const int year_number_in_full_indiction,
-//                                     std::initializer_list<DayProperty> properties) ;
+int apostol_fast_length(const int year_number_in_full_indiction) ;
+bool is_date_of(const int year_number_in_full_indiction, const MonthDay date, const DayProperty property) ;
+std::vector<MonthDay> find_all_dates(const int year_number_in_full_indiction, const DayProperty property) ;
+std::vector<MonthDay> find_all_dates(const int year_number_in_full_indiction,
+                                     std::initializer_list<DayProperty> properties) ;
 //std::vector<DayProperty> get_day_properties(const int year_number_in_full_indiction, const MonthDay date) ;
+//int get_n50(const int year_number_in_full_indiction, const MonthDay date) ;
 
 } // namespace full_indiction]]
   out1:write(h2, '\n')
@@ -720,6 +720,8 @@ do
 #include <array>
 #include <stdexcept>
 #include <bitset>
+#include <algorithm>
+#include <string>
 
 namespace {
 
@@ -1277,17 +1279,65 @@ MonthDay find_date(const int y, const DayProperty p)
   check_property_number(p) ;
   const auto& b = array_of_dates_by_property_and_year[static_cast<int>(p)][y-1];
   std::bitset<9> m;
-  for (int k = m.size() - 1, i = b.size() - 1; k>=0 && i>=0; --k, --i) m[k] = b[i] ;
+  for (int k = m.size() - 1, i = b.size() - 1; k>=0; --k, --i) m[k] = b[i] ;
   auto d = m;
   m >>= 5;
   d &= 0b11111u ;
   return { m.to_ulong(), d.to_ulong() };
 }
 
+std::vector<MonthDay> find_all_dates(const int y, const DayProperty p)
+{
+  check_year_number(y) ;
+  check_property_number(p) ;
+  std::vector<MonthDay> result;
+  std::vector<std::bitset<9>> vb;
+  const auto& b = array_of_dates_by_property_and_year[static_cast<int>(p)][y-1];
+  std::string s(b.size(), '0');
+  for (int k = b.size() - 1, i = 0; k>=0; --k, ++i) if (b[k]) s[i] = '1';
+  for (auto i = 0u; i<s.size(); i+=9) vb.emplace_back(s.substr(i, 9)) ;
+  std::transform(vb.begin(), vb.end(), std::back_inserter(result), [](const auto& e){
+    auto m = e, d = e;
+    m >>= 5;
+    d &= 0b11111u;
+    return MonthDay { m.to_ulong(), d.to_ulong() };
+  });
+  return result;
+}
+
+std::vector<MonthDay> find_all_dates(const int y, std::initializer_list<DayProperty> il)
+{
+  std::vector<MonthDay> result;
+  for (auto p: il) {
+    auto v = find_all_dates(y,p);
+    std::move(v.begin(), v.end(), std::back_inserter(result));
+  }
+  return result;
+}
+
 MonthDay easter_date(const int y)
 {
   return find_date(y, PASHA);
 }
+
+bool is_date_of(const int y, const MonthDay d, const DayProperty p)
+{
+  check_date(y, d);
+  return d == find_date(y, p);
+}
+
+int apostol_fast_length(const int y)
+{
+  check_year_number(y) ;
+  const bool leap = is_leap(y) ;
+  int x1 = 0;
+  int x2 = leap ? 181 : 180 ;
+  auto pasha = easter_date(y);
+  for (int i=1; i<pasha.first; ++i) x1 += month_length(i, leap) ;
+  x1 += pasha.second ;
+  return x2 - x1 - 57 ;
+}
+
 } // namespace full_indiction ]]
   out2:write(c2, '\n')
   assert(out2:close())

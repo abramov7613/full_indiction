@@ -16,24 +16,23 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Install Dependencies
-      run: |
-        sudo apt install -y lua5.4
-        
+      run: sudo apt install -y lua5.4
+
     - uses: actions/checkout@v4
-      with:
-          fetch-depth: 0
 
     - name: build and test
       run: |
         cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
         cmake --build build
+        cd build
+        ctest
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v7.0.1
       with:
         name: full_indiction
-        path: build/*.h build/*.cpp build/*.a
-        
-        
+        path: build/full_indiction.h build/full_indiction.cpp build/*full_indiction*.a
+
+
 
 
