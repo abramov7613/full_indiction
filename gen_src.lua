@@ -460,7 +460,7 @@ function DD:set_to_wd_before(weekday) -- change date to first weekday before cur
 end
 
 --##################################################################
---####################  Generate header   ##########################
+--####################  Generate header file  ######################
 --##################################################################
 do
   local h1 = [[
@@ -1295,7 +1295,10 @@ std::vector<MonthDay> find_all_dates(const int y, const DayProperty p)
   const auto& b = array_of_dates_by_property_and_year[static_cast<int>(p)][y-1];
   std::string s(b.size(), '0');
   for (int k = b.size() - 1, i = 0; k>=0; --k, ++i) if (b[k]) s[i] = '1';
-  for (auto i = 0u; i<s.size(); i+=9) vb.emplace_back(s.substr(i, 9)) ;
+  for (auto i = 0u; i<s.size(); i+=9) {
+    auto q = s.substr(i, 9) ;
+    if ( std::any_of(q.begin(), q.end(), [](char c){ return c=='1'; }) ) vb.emplace_back(q) ;
+  }
   std::transform(vb.begin(), vb.end(), std::back_inserter(result), [](const auto& e){
     auto m = e, d = e;
     m >>= 5;
