@@ -34,7 +34,7 @@ end
 out1 = assert(io.open(arg[1] ,"w"))
 out2 = assert(io.open(arg[2] ,"w"))
 
-GREAT_INDICTION_LENGTH = 532
+INDICTION_LENGTH = 532
 
 DAY_PROPERTIES_ = {
   { 'EASTER', "Светлое Христово Воскресение. ПАСХА." },
@@ -212,7 +212,7 @@ for i,v in ipairs(DAY_PROPERTIES_) do
 end
 
 function check_y(y)
-  if type(y)~='number' or (y<1 or y>GREAT_INDICTION_LENGTH) then return false end
+  if type(y)~='number' or (y<1 or y>INDICTION_LENGTH) then return false end
   return true
 end
 
@@ -418,7 +418,7 @@ function DD:I(c) -- increment self
     if self.m>12 then
       self.m = 1
       self.y = self.y + 1
-      if self.y>GREAT_INDICTION_LENGTH then self.y = 1 end
+      if self.y>INDICTION_LENGTH then self.y = 1 end
     end
     U = self:ml()
   end
@@ -435,7 +435,7 @@ function DD:D(c) -- decrement self
     if self.m<1 then
       self.m = 12
       self.y = self.y - 1
-      if self.y<1 then self.y = GREAT_INDICTION_LENGTH end
+      if self.y<1 then self.y = INDICTION_LENGTH end
     end
     U = self:ml()
     self.d = self.d + U
@@ -471,7 +471,7 @@ do
 
 namespace full_indiction {
 
-constexpr auto GREAT_INDICTION_LENGTH = 532 ;
+constexpr auto INDICTION_LENGTH = 532 ;
 
 using MonthDay = std::pair<int,int> ;
 
@@ -729,7 +729,7 @@ using namespace full_indiction ;
 
 constexpr void check_year_number(const int year_number_in_full_indiction)
 {
-  if (year_number_in_full_indiction < 1 || year_number_in_full_indiction > GREAT_INDICTION_LENGTH)
+  if (year_number_in_full_indiction < 1 || year_number_in_full_indiction > INDICTION_LENGTH)
     throw std::runtime_error("full_indiction: value of 'year_number_in_full_indiction' must be in range [1,533)");
 }
 
@@ -792,7 +792,7 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
   -- save value to array method: where 'd' is DD object, 'p' is PROPERTY_NAME string
   local set = function(d, p)
     array_of_dates_by_property_and_year[p] = array_of_dates_by_property_and_year[p] or {}
-    for y = 1, GREAT_INDICTION_LENGTH do
+    for y = 1, INDICTION_LENGTH do
       array_of_dates_by_property_and_year[p][y] = array_of_dates_by_property_and_year[p][y] or {}
     end
     local sz = #array_of_dates_by_property_and_year[p][d.y] + 1
@@ -800,7 +800,7 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
     array_of_dates_by_property_and_year[p][d.y][sz] = { m = d.m, d = d.d }
   end
   -- begin fill 'array_of_dates_by_property_and_year' loop
-  for year = 1, GREAT_INDICTION_LENGTH do
+  for year = 1, INDICTION_LENGTH do
     -- точки отсчета
     local pasha = DD:new(year, easter(year))
     local ascension = pasha:icp(39)
@@ -1063,7 +1063,7 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
       set(dd, 'SAT_BEFORE_BAPTISM')
     end
     i = year-1
-    if i==0 then i = GREAT_INDICTION_LENGTH end
+    if i==0 then i = INDICTION_LENGTH end
     dd:assign{i,12,25}
     i = dd:wd()
     if(not(i==0 or i==1)) then
@@ -1255,7 +1255,7 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
   out2:write("constexpr std::array array_of_dates_by_property_and_year = {\n")
   for p = 1, P_COUNT do
     out2:write('  std::array{\n')
-    for y = 1, GREAT_INDICTION_LENGTH do
+    for y = 1, INDICTION_LENGTH do
       local t = {'    ', BS, '{ "'}
       local dates = array_of_dates_by_property_and_year[ DAY_PROPERTIES_[p][1] ][ y ]
       for i = 1, MAX_DATES_COUNT do

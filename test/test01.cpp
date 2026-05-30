@@ -3,14 +3,14 @@
 //    https://github.com/catchorg/Catch2/releases/download/v3.14.0/catch_amalgamated.hpp
 
 #include "catch_amalgamated.hpp"
-#include "great_indiction.h"
+#include "full_indiction.h"
 #include <array>
 #include <string>
 #include <algorithm>
 
-namespace gi = great_indiction;
-using gi::GREAT_INDICTION_LENGTH;
-using MD = gi::MonthDay ;
+namespace fi = full_indiction;
+using fi::INDICTION_LENGTH;
+using MD = fi::MonthDay ;
 
 
 namespace Catch {
@@ -567,21 +567,21 @@ TEST_CASE("проверка расчета даты пасхи"){
     MD(4,15),
   };
   SECTION("функция easter_date"){
-    for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y) {
+    for (int y=1; y<=INDICTION_LENGTH; ++y) {
       INFO("y = " << y);
-      REQUIRE( gi::easter_date(y) == arr[y-1] ) ;
+      REQUIRE( fi::easter_date(y) == arr[y-1] ) ;
     }
   }
   SECTION("функция is_date_of"){
-    for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y) {
+    for (int y=1; y<=INDICTION_LENGTH; ++y) {
       INFO("y = " << y);
-      REQUIRE( gi::is_date_of(y, arr[y-1], gi::PASHA) ) ;
+      REQUIRE( fi::is_date_of(y, arr[y-1], fi::PASHA) ) ;
     }
   }
   SECTION("функция find_date"){
-    for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y) {
+    for (int y=1; y<=INDICTION_LENGTH; ++y) {
       INFO("y = " << y);
-      REQUIRE( gi::find_date(y, gi::PASHA) == arr[y-1] ) ;
+      REQUIRE( fi::find_date(y, fi::PASHA) == arr[y-1] ) ;
     }
   }
 }
@@ -1122,9 +1122,9 @@ TEST_CASE("проверка расчета длины петрова поста"
     37,
     18,
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::apostol_fast_length(y) == arr[y-1] ) ;
+    REQUIRE( fi::apostol_fast_length(y) == arr[y-1] ) ;
   }
 }
 
@@ -1665,9 +1665,9 @@ TEST_CASE("проверка расчета даты вознесения"){
     MD(5,24),
     MD(5,16),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::ASCENSION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::ASCENSION) == arr[y-1] ) ;
   }
 }
 
@@ -2208,9 +2208,9 @@ TEST_CASE("проверка расчета даты Пятидеся́тницы
     MD(6,3),
     MD(5,26),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::PENTECOST) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::PENTECOST) == arr[y-1] ) ;
   }
 }
 
@@ -2751,9 +2751,9 @@ TEST_CASE("проверка расчета даты Всех святых"){
     MD(6,10),
     MD(6,2),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::ALL_SAINTS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::ALL_SAINTS) == arr[y-1] ) ;
   }
 }
 
@@ -3294,9 +3294,9 @@ TEST_CASE("проверка расчета даты Недели о мытаре
     MD(2,5),
     MD(1,27),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::PUBLICAN_PHARISEE_SUN) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::PUBLICAN_PHARISEE_SUN) == arr[y-1] ) ;
   }
 }
 
@@ -3837,9 +3837,9 @@ TEST_CASE("проверка расчета даты Недели о блудно
     MD(2,12),
     MD(2,3),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::PRODIGAL_SON_SUN) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::PRODIGAL_SON_SUN) == arr[y-1] ) ;
   }
 }
 
@@ -4380,9 +4380,9 @@ TEST_CASE("проверка расчета даты Недели о Страшн
     MD(2,19),
     MD(2,10),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::DREAD_JUDGEMENT_SUN) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::DREAD_JUDGEMENT_SUN) == arr[y-1] ) ;
   }
 }
 
@@ -4923,9 +4923,9 @@ TEST_CASE("проверка расчета даты Прощеное воскр�
     MD(2,26),
     MD(2,17),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::CHEESE_SUN) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::CHEESE_SUN) == arr[y-1] ) ;
   }
 }
 
@@ -5466,9 +5466,9 @@ TEST_CASE("проверка расчета даты Вход Господень 
     MD(4,8),
     MD(3,31),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::PALM_SUN) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::PALM_SUN) == arr[y-1] ) ;
   }
 }
 
@@ -6009,20 +6009,20 @@ TEST_CASE("проверка расчета даты Вселенская род�
     MD(2,18),
     MD(2,9),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::MEMORIAL_SAT) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::MEMORIAL_SAT) == arr[y-1] ) ;
   }
 }
 
 
 TEST_CASE("проверка расчета даты Сретения"){
   const int y1 = 507, y2 = 165, y3 = 70 ;
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y) {
+  for (int y=1; y<=INDICTION_LENGTH; ++y) {
     if (y != y1 && y != y2 && y != y3)
-      REQUIRE( gi::find_date(y, gi::GOD_MEETING) == MD{2,2} ) ;
+      REQUIRE( fi::find_date(y, fi::GOD_MEETING) == MD{2,2} ) ;
     else
-      REQUIRE( gi::find_date(y, gi::GOD_MEETING) == MD{2,1} ) ;
+      REQUIRE( fi::find_date(y, fi::GOD_MEETING) == MD{2,1} ) ;
   }
 }
 
@@ -6563,9 +6563,9 @@ TEST_CASE("проверка расчета даты Предпразднство
     MD(2,1),
     MD(2,1),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::FOREFEAST_GOD_MEETING) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::FOREFEAST_GOD_MEETING) == arr[y-1] ) ;
   }
 }
 
@@ -7106,9 +7106,9 @@ TEST_CASE("проверка расчета даты Попразднства С�
     MD(2,3),
     MD(2,3),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::AFTERFEAST_GOD_MEETING1) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::AFTERFEAST_GOD_MEETING1) == arr[y-1] ) ;
   }
 }
 
@@ -7649,9 +7649,9 @@ TEST_CASE("проверка расчета даты Попразднства С�
     MD(2,4),
     MD(2,4),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::AFTERFEAST_GOD_MEETING2) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::AFTERFEAST_GOD_MEETING2) == arr[y-1] ) ;
   }
 }
 
@@ -8192,9 +8192,9 @@ TEST_CASE("проверка расчета даты Попразднства С�
     MD(2,5),
     MD(2,5),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::AFTERFEAST_GOD_MEETING3) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::AFTERFEAST_GOD_MEETING3) == arr[y-1] ) ;
   }
 }
 
@@ -8735,9 +8735,9 @@ TEST_CASE("проверка расчета даты Попразднства С�
     MD(2,6),
     MD(2,6),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::AFTERFEAST_GOD_MEETING4) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::AFTERFEAST_GOD_MEETING4) == arr[y-1] ) ;
   }
 }
 
@@ -9278,9 +9278,9 @@ TEST_CASE("проверка расчета даты Попразднства С�
     MD(2,7),
     MD(2,7),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::AFTERFEAST_GOD_MEETING5) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::AFTERFEAST_GOD_MEETING5) == arr[y-1] ) ;
   }
 }
 
@@ -9821,9 +9821,9 @@ TEST_CASE("проверка расчета даты Попразднства С�
     MD(2,8),
     MD(0,0),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::AFTERFEAST_GOD_MEETING6) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::AFTERFEAST_GOD_MEETING6) == arr[y-1] ) ;
   }
 }
 
@@ -10364,9 +10364,9 @@ TEST_CASE("проверка расчета даты Отдание праздн�
     MD(2,9),
     MD(2,8),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::ENDOF_GOD_MEETING) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::ENDOF_GOD_MEETING) == arr[y-1] ) ;
   }
 }
 
@@ -10907,9 +10907,9 @@ TEST_CASE("проверка расчета даты Суббота перед В
     MD(9,8),
     MD(9,7),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_BEFORE_EXALTATION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_BEFORE_EXALTATION) == arr[y-1] ) ;
   }
 }
 
@@ -11450,9 +11450,9 @@ TEST_CASE("проверка расчета даты Неделя пред Воз
     MD(9,9),
     MD(9,8),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_BEFORE_EXALTATION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_BEFORE_EXALTATION) == arr[y-1] ) ;
   }
 }
 
@@ -11993,9 +11993,9 @@ TEST_CASE("проверка расчета даты Суббота после В
     MD(9,15),
     MD(9,21),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_AFTER_EXALTATION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_AFTER_EXALTATION) == arr[y-1] ) ;
   }
 }
 
@@ -12536,9 +12536,9 @@ TEST_CASE("проверка расчета даты Неделя по Воздв
     MD(9,16),
     MD(9,15),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_AFTER_EXALTATION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_AFTER_EXALTATION) == arr[y-1] ) ;
   }
 }
 
@@ -13079,9 +13079,9 @@ TEST_CASE("проверка расчета даты Собор новомуче�
     MD(1,22),
     MD(1,27),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::NEW_MARTYRS_OF_RUSSIA) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::NEW_MARTYRS_OF_RUSSIA) == arr[y-1] ) ;
   }
 }
 
@@ -13622,9 +13622,9 @@ TEST_CASE("проверка расчета даты Память святых о
     MD(10,14),
     MD(10,13),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::FATHERS_ECU_COUNCIL_7) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::FATHERS_ECU_COUNCIL_7) == arr[y-1] ) ;
   }
 }
 
@@ -14165,9 +14165,9 @@ TEST_CASE("проверка расчета даты Димитриевская �
     MD(10,20),
     MD(10,19),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::DIMITRI_SAT) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::DIMITRI_SAT) == arr[y-1] ) ;
   }
 }
 
@@ -14708,9 +14708,9 @@ TEST_CASE("проверка расчета даты Неделя святых п
     MD(12,16),
     MD(12,15),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::HOLY_FOREFATHERS_SUN) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::HOLY_FOREFATHERS_SUN) == arr[y-1] ) ;
   }
 }
 
@@ -15251,9 +15251,9 @@ TEST_CASE("проверка расчета даты Суббота пред Ро
     MD(12,22),
     MD(12,21),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_BEFORE_CHRISTMAS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_BEFORE_CHRISTMAS) == arr[y-1] ) ;
   }
 }
 
@@ -15794,9 +15794,9 @@ TEST_CASE("проверка расчета даты Неделя пред Рож
     MD(12,23),
     MD(12,22),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_BEFORE_CHRISTMAS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_BEFORE_CHRISTMAS) == arr[y-1] ) ;
   }
 }
 
@@ -16337,9 +16337,9 @@ TEST_CASE("проверка расчета даты Суббота по Рожд
     MD(12,29),
     MD(12,28),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_AFTER_CHRISTMAS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_AFTER_CHRISTMAS) == arr[y-1] ) ;
   }
 }
 
@@ -16880,9 +16880,9 @@ TEST_CASE("проверка расчета даты Чтения субботы 
     MD(0,0),
     MD(0,0),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_AFTER_CHRISTMAS_READINGS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_AFTER_CHRISTMAS_READINGS) == arr[y-1] ) ;
   }
 }
 
@@ -17423,9 +17423,9 @@ TEST_CASE("проверка расчета даты Неделя по Рожде
     MD(12,30),
     MD(12,29),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_AFTER_CHRISTMAS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_AFTER_CHRISTMAS) == arr[y-1] ) ;
   }
 }
 
@@ -17966,9 +17966,9 @@ TEST_CASE("проверка расчета даты Чтения недели п
     MD(0,0),
     MD(0,0),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_AFTER_CHRISTMAS_READINGS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_AFTER_CHRISTMAS_READINGS) == arr[y-1] ) ;
   }
 }
 
@@ -18509,9 +18509,9 @@ TEST_CASE("проверка расчета даты Правв. Иосифа О�
     MD(12,30),
     MD(12,29),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAINTS_JOSEPH_DAVID_JAMES) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAINTS_JOSEPH_DAVID_JAMES) == arr[y-1] ) ;
   }
 }
 
@@ -19052,17 +19052,17 @@ TEST_CASE("проверка расчета даты Суббота перед Б
     MD(0,0),
     MD(1,5),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_BEFORE_BAPTISM) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_BEFORE_BAPTISM) == arr[y-1] ) ;
   }
 }
 
 
 TEST_CASE("проверка расчета даты Чтения субботы пред Богоявлением"){
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y) {
+  for (int y=1; y<=INDICTION_LENGTH; ++y) {
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_BEFORE_BAPTISM_READINGS) == MD{0,0} ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_BEFORE_BAPTISM_READINGS) == MD{0,0} ) ;
   }
 }
 
@@ -19603,9 +19603,9 @@ TEST_CASE("проверка расчета даты Неделя перед Бо
     MD(1,1),
     MD(0,0),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_BEFORE_BAPTISM) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_BEFORE_BAPTISM) == arr[y-1] ) ;
   }
 }
 
@@ -20146,9 +20146,9 @@ TEST_CASE("проверка расчета даты Чтения недели п
     MD(0,0),
     MD(1,1),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_BEFORE_BAPTISM_READINGS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_BEFORE_BAPTISM_READINGS) == arr[y-1] ) ;
   }
 }
 
@@ -20689,9 +20689,9 @@ TEST_CASE("проверка расчета даты Суббота по Бого
     MD(1,7),
     MD(1,12),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SAT_AFTER_BAPTISM) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SAT_AFTER_BAPTISM) == arr[y-1] ) ;
   }
 }
 
@@ -21232,9 +21232,9 @@ TEST_CASE("проверка расчета даты Неделя по Богоя
     MD(1,8),
     MD(1,13),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::SUN_AFTER_BAPTISM) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::SUN_AFTER_BAPTISM) == arr[y-1] ) ;
   }
 }
 
@@ -21775,9 +21775,9 @@ TEST_CASE("проверка расчета даты Собор 3-x свят. В�
     MD(1,30),
     MD(1,30),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::CONVENTION_OF_3_HIERARCHS) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::CONVENTION_OF_3_HIERARCHS) == arr[y-1] ) ;
   }
 }
 
@@ -22318,9 +22318,9 @@ TEST_CASE("проверка расчета даты Первое и второе
     MD(2,23),
     MD(2,24),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::JOHN_BAPTIST_HEAD_DISCOVERY_1_2) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::JOHN_BAPTIST_HEAD_DISCOVERY_1_2) == arr[y-1] ) ;
   }
 }
 
@@ -22861,9 +22861,9 @@ TEST_CASE("проверка расчета даты Третье обре́те�
     MD(5,25),
     MD(5,23),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::JOHN_BAPTIST_HEAD_DISCOVERY_3) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::JOHN_BAPTIST_HEAD_DISCOVERY_3) == arr[y-1] ) ;
   }
 }
 
@@ -23404,9 +23404,9 @@ TEST_CASE("проверка расчета даты Святых 40 мучени
     MD(3,9),
     MD(3,9),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::HOLY_FORTY_MARTYRS_OF_SEBASTE) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::HOLY_FORTY_MARTYRS_OF_SEBASTE) == arr[y-1] ) ;
   }
 }
 
@@ -23947,9 +23947,9 @@ TEST_CASE("проверка расчета даты Предпразднство
     MD(3,24),
     MD(3,24),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::FOREFEAST_GOD_MOTHER_ANNUNCIATION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::FOREFEAST_GOD_MOTHER_ANNUNCIATION) == arr[y-1] ) ;
   }
 }
 
@@ -24490,9 +24490,9 @@ TEST_CASE("проверка расчета даты Отдание праздн�
     MD(3,26),
     MD(3,26),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::ENDOF_GOD_MOTHER_ANNUNCIATION) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::ENDOF_GOD_MOTHER_ANNUNCIATION) == arr[y-1] ) ;
   }
 }
 
@@ -25033,9 +25033,9 @@ TEST_CASE("проверка расчета даты Вмч. Гео́ргия П�
     MD(4,23),
     MD(4,23),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::HOLY_GREAT_MARTYR_GEORGE) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::HOLY_GREAT_MARTYR_GEORGE) == arr[y-1] ) ;
   }
 }
 
@@ -25576,9 +25576,9 @@ TEST_CASE("проверка расчета даты Память святых о
     MD(7,15),
     MD(7,14),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
     INFO("y = " << y);
-    REQUIRE( gi::find_date(y, gi::FATHERS_ECU_COUNCIL_1_6) == arr[y-1] ) ;
+    REQUIRE( fi::find_date(y, fi::FATHERS_ECU_COUNCIL_1_6) == arr[y-1] ) ;
   }
 }
 
@@ -26119,8 +26119,8 @@ TEST_CASE("проверка расчета даты Двунадесятые п�
     std::array{ MD(4,8), MD(5,24), MD(6,3), },
     std::array{ MD(3,31), MD(5,16), MD(5,26), },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::MOVEABLE_FEAST);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::MOVEABLE_FEAST);
     std::vector<MD> vec2 (arr[y-1].begin(), arr[y-1].end());
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
@@ -26133,8 +26133,8 @@ TEST_CASE("проверка расчета даты Двунадесятые п�
 TEST_CASE("проверка расчета даты Двунадесятые непереходящие праздники"){
   constexpr std::array a1 { MD(1,6), MD(2,2), MD(3,25), MD(8,6), MD(8,15), MD(9,8), MD(9,14), MD(11,21), MD(12,25), };
   constexpr std::array a2 { MD(1,6), MD(2,1), MD(3,25), MD(8,6), MD(8,15), MD(9,8), MD(9,14), MD(11,21), MD(12,25), };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::IMMOVEABLE_FEAST);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::IMMOVEABLE_FEAST);
     std::sort (vec1.begin(), vec1.end());
     std::vector<MD> vec2 (9);
     if (y==70 || y==165 || y==507) std::copy(a2.begin(), a2.end(), vec2.begin());
@@ -26147,8 +26147,8 @@ TEST_CASE("проверка расчета даты Двунадесятые н�
 
 TEST_CASE("проверка расчета даты Великие праздники"){
   std::vector<MD> vec1 { MD(1,1), MD(6,24), MD(6,29), MD(8,29), MD(10,1), } ;
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec2 = gi::find_all_dates(y, gi::GREAT_FEAST);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec2 = fi::find_all_dates(y, fi::GREAT_FEAST);
     std::sort (vec2.begin(), vec2.end());
     INFO("y = " << y);
     REQUIRE( vec1 == vec2 ) ;
@@ -52759,8 +52759,8 @@ TEST_CASE("проверка расчета даты великого поста"
       MD(4,14),
     },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::GREAT_LENT);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::GREAT_LENT);
     std::vector<MD> vec2 (arr[y-1].begin(), arr[y-1].end());
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
@@ -67193,8 +67193,8 @@ TEST_CASE("проверка расчета даты Петрова поста"){
       MD(6,28),
     },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::APOSTOL_LENT);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::APOSTOL_LENT);
     auto& vec2 = arr[y-1] ;
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
@@ -67247,8 +67247,8 @@ TEST_CASE("проверка расчета даты Рождественског
     MD(12,23),
     MD(12,24),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::CHRISTMAS_LENT);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::CHRISTMAS_LENT);
     std::sort (vec1.begin(), vec1.end());
     INFO("y = " << y);
     REQUIRE( vec1 == vec2 ) ;
@@ -67273,8 +67273,8 @@ TEST_CASE("проверка расчета даты Успенского пос�
     MD(8,13),
     MD(8,14),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::ASSUMPTION_LENT);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::ASSUMPTION_LENT);
     std::sort (vec1.begin(), vec1.end());
     INFO("y = " << y);
     REQUIRE( vec1 == vec2 ) ;
@@ -72073,8 +72073,8 @@ TEST_CASE("проверка расчета даты сплошной седми�
       MD(4,21),
     },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::SOLID_WEEK_BRIGHT);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::SOLID_WEEK_BRIGHT);
     std::vector<MD> vec2 (arr[y-1].begin(), arr[y-1].end());
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
@@ -72098,8 +72098,8 @@ TEST_CASE("проверка расчета даты сплошной седми�
     MD(12,30),
     MD(12,31),
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::SOLID_WEEK_CHRISTMAS);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::SOLID_WEEK_CHRISTMAS);
     std::sort (vec1.begin(), vec1.end());
     INFO("y = " << y);
     REQUIRE( vec1 == vec2 ) ;
@@ -76898,8 +76898,8 @@ TEST_CASE("проверка расчета даты сплошной седми�
       MD(6,9),
     },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::SOLID_WEEK_PENTECOST);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::SOLID_WEEK_PENTECOST);
     std::vector<MD> vec2 (arr[y-1].begin(), arr[y-1].end());
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
@@ -81700,8 +81700,8 @@ TEST_CASE("проверка расчета даты сплошной седми�
       MD(2,26),
     },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::SOLID_WEEK_CHEESE);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::SOLID_WEEK_CHEESE);
     std::vector<MD> vec2 (arr[y-1].begin(), arr[y-1].end());
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
@@ -86502,8 +86502,8 @@ TEST_CASE("проверка расчета даты сплошной седми�
       MD(2,11),
     },
   };
-  for (int y=1; y<=GREAT_INDICTION_LENGTH; ++y){
-    auto vec1 = gi::find_all_dates(y, gi::SOLID_WEEK_PUBLICAN_PHARISEE);
+  for (int y=1; y<=INDICTION_LENGTH; ++y){
+    auto vec1 = fi::find_all_dates(y, fi::SOLID_WEEK_PUBLICAN_PHARISEE);
     std::vector<MD> vec2 (arr[y-1].begin(), arr[y-1].end());
     std::sort (vec1.begin(), vec1.end());
     std::sort (vec2.begin(), vec2.end());
