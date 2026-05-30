@@ -6,7 +6,7 @@ find_program(LUA_54_EXE lua5.4 REQUIRED)
 
 add_custom_command(
   OUTPUT full_indiction.h full_indiction.cpp
-  COMMAND LUA_54_EXE gen_src.lua full_indiction.h full_indiction.cpp
+  COMMAND ${LUA_54_EXE} ${CMAKE_CURRENT_SOURCE_DIR}/gen_src.lua full_indiction.h full_indiction.cpp
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/gen_src.lua
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   VERBATIM
