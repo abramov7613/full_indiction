@@ -23,9 +23,17 @@ jobs:
       with:
           fetch-depth: 0
 
-    - name: build
+    - name: build and test
       run: |
         cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
         cmake --build build
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: full_indiction
+        path: build/*.h build/*.cpp build/*.a
+        
+        
 
 
