@@ -819,10 +819,27 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
     local t1 = publican_pharisee:icp(13)
     if dd >= lent_begin then dd = forgiveness; end
     set(dd, 'GOD_MEETING');
-    local god_meeting = dd;
     if dd == t1 then t1 = publican_pharisee:icp(6); end
     set(t1, 'MEMORIAL_SAT');
     local memorial_sat = t1;
+    --  один из трех типов церковных праздников
+    set(palm_sun,          'MOVEABLE_FEAST');
+    set(ascension,         'MOVEABLE_FEAST');
+    set(pentecost,         'MOVEABLE_FEAST');
+    set(DD:new(year,1,6),  'IMMOVEABLE_FEAST');
+    set(dd,                'IMMOVEABLE_FEAST');
+    set(DD:new(year,3,25), 'IMMOVEABLE_FEAST');
+    set(DD:new(year,8,6),  'IMMOVEABLE_FEAST');
+    set(DD:new(year,8,15), 'IMMOVEABLE_FEAST');
+    set(DD:new(year,9,8),  'IMMOVEABLE_FEAST');
+    set(DD:new(year,9,14), 'IMMOVEABLE_FEAST');
+    set(DD:new(year,11,21),'IMMOVEABLE_FEAST');
+    set(DD:new(year,12,25),'IMMOVEABLE_FEAST');
+    set(DD:new(year,1,1),  'GREAT_FEAST');
+    set(DD:new(year,6,24), 'GREAT_FEAST');
+    set(DD:new(year,6,29), 'GREAT_FEAST');
+    set(DD:new(year,8,29), 'GREAT_FEAST');
+    set(DD:new(year,10,1), 'GREAT_FEAST');
     -- Предпразднство Сре́тения
     local t2 = DD:new(year, 2, 1)
     if dd ~= t2 then
@@ -1212,24 +1229,6 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
       set(dd, 'GREAT_LENT')
       dd:i()
     end
-    --  один из трех типов церковных праздников
-    set(palm_sun,      'MOVEABLE_FEAST')
-    set(ascension,     'MOVEABLE_FEAST')
-    set(pentecost,     'MOVEABLE_FEAST')
-    set(dd(year,1,6),  'IMMOVEABLE_FEAST');
-    set(god_meeting,   'IMMOVEABLE_FEAST')
-    set(dd(year,3,25), 'IMMOVEABLE_FEAST');
-    set(dd(year,8,6),  'IMMOVEABLE_FEAST');
-    set(dd(year,8,15), 'IMMOVEABLE_FEAST');
-    set(dd(year,9,8),  'IMMOVEABLE_FEAST');
-    set(dd(year,9,14), 'IMMOVEABLE_FEAST');
-    set(dd(year,11,21),'IMMOVEABLE_FEAST');
-    set(dd(year,12,25),'IMMOVEABLE_FEAST');
-    set(dd(year,1,1),  'GREAT_FEAST');
-    set(dd(year,6,24), 'GREAT_FEAST');
-    set(dd(year,6,29), 'GREAT_FEAST');
-    set(dd(year,8,29), 'GREAT_FEAST');
-    set(dd(year,10,1), 'GREAT_FEAST');
   end -- fill 'array_of_dates_by_property_and_year' loop
 
   -- create array of "PROPERTY_NAME" keys & check values
