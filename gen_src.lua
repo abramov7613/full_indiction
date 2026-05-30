@@ -791,6 +791,8 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
   local MAX_DATES_COUNT = 0
   -- save value to array method: where 'd' is DD object, 'p' is PROPERTY_NAME string
   local set = function(d, p)
+    if not check_ymd(d.y, d.m, d.d) then error"function set error: invalid DD object" end
+    if not DAY_PROPERTIES[p] then error("function set error: invalid property '"..p.."'") end
     array_of_dates_by_property_and_year[p] = array_of_dates_by_property_and_year[p] or {}
     for y = 1, INDICTION_LENGTH do
       array_of_dates_by_property_and_year[p][y] = array_of_dates_by_property_and_year[p][y] or {}
