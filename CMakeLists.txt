@@ -17,7 +17,7 @@ add_library(${PROJECT_NAME} STATIC
   ${CMAKE_CURRENT_BINARY_DIR}/full_indiction.cpp
 )
 
-target_compile_options(${PROJECT_NAME} PRIVATE -fconstexpr-ops-limit=3355443300)
+target_compile_options(${PROJECT_NAME} PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fconstexpr-ops-limit=3355443300>)
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 
