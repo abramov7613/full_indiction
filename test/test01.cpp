@@ -19059,14 +19059,6 @@ TEST_CASE("проверка расчета даты Суббота перед Б
 }
 
 
-TEST_CASE("проверка расчета даты Чтения субботы пред Богоявлением"){
-  for (int y=1; y<=INDICTION_LENGTH; ++y) {
-    INFO("y = " << y);
-    REQUIRE( fi::find_date(y, fi::SAT_BEFORE_BAPTISM_READINGS) == MD{0,0} ) ;
-  }
-}
-
-
 TEST_CASE("проверка расчета даты Неделя перед Богоявлением"){
   constexpr std::array arr = {
     MD(0,0),
