@@ -1147,10 +1147,10 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
     -- ...
 
     --  сплошные седмицы
-    set(dd(year,1,1), 'SOLID_WEEK_CHRISTMAS');
-    set(dd(year,1,2), 'SOLID_WEEK_CHRISTMAS');
-    set(dd(year,1,3), 'SOLID_WEEK_CHRISTMAS');
-    set(dd(year,1,4), 'SOLID_WEEK_CHRISTMAS');
+    set(dd(year,1,1),   'SOLID_WEEK_CHRISTMAS');
+    set(dd(year,1,2),   'SOLID_WEEK_CHRISTMAS');
+    set(dd(year,1,3),   'SOLID_WEEK_CHRISTMAS');
+    set(dd(year,1,4),   'SOLID_WEEK_CHRISTMAS');
     set(dd(year,12,25), 'SOLID_WEEK_CHRISTMAS');
     set(dd(year,12,26), 'SOLID_WEEK_CHRISTMAS');
     set(dd(year,12,27), 'SOLID_WEEK_CHRISTMAS');
@@ -1158,14 +1158,14 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
     set(dd(year,12,29), 'SOLID_WEEK_CHRISTMAS');
     set(dd(year,12,30), 'SOLID_WEEK_CHRISTMAS');
     set(dd(year,12,31), 'SOLID_WEEK_CHRISTMAS');
-    set(pasha, 'SOLID_WEEK_BRIGHT')
+    set(pasha,        'SOLID_WEEK_BRIGHT')
     set(pasha:icp(1), 'SOLID_WEEK_BRIGHT')
     set(pasha:icp(2), 'SOLID_WEEK_BRIGHT')
     set(pasha:icp(3), 'SOLID_WEEK_BRIGHT')
     set(pasha:icp(4), 'SOLID_WEEK_BRIGHT')
     set(pasha:icp(5), 'SOLID_WEEK_BRIGHT')
     set(pasha:icp(6), 'SOLID_WEEK_BRIGHT')
-    set(pentecost, 'SOLID_WEEK_PENTECOST')
+    set(pentecost,        'SOLID_WEEK_PENTECOST')
     set(pentecost:icp(1), 'SOLID_WEEK_PENTECOST')
     set(pentecost:icp(2), 'SOLID_WEEK_PENTECOST')
     set(pentecost:icp(3), 'SOLID_WEEK_PENTECOST')
@@ -1178,8 +1178,8 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
     set(dread_judgement:icp(4), 'SOLID_WEEK_CHEESE')
     set(dread_judgement:icp(5), 'SOLID_WEEK_CHEESE')
     set(dread_judgement:icp(6), 'SOLID_WEEK_CHEESE')
-    set(forgiveness, 'SOLID_WEEK_CHEESE')
-    set(publican_pharisee, 'SOLID_WEEK_PUBLICAN_PHARISEE')
+    set(dread_judgement:icp(7), 'SOLID_WEEK_CHEESE')
+    set(publican_pharisee,        'SOLID_WEEK_PUBLICAN_PHARISEE')
     set(publican_pharisee:icp(1), 'SOLID_WEEK_PUBLICAN_PHARISEE')
     set(publican_pharisee:icp(2), 'SOLID_WEEK_PUBLICAN_PHARISEE')
     set(publican_pharisee:icp(3), 'SOLID_WEEK_PUBLICAN_PHARISEE')
@@ -1211,19 +1211,19 @@ constexpr void check_date(const int year_number_in_full_indiction, const MonthDa
       dd:i()
     end
     --  один из трех типов церковных праздников
-    set(palm_sun, 'MOVEABLE_FEAST')
-    set(ascension, 'MOVEABLE_FEAST')
-    set(pentecost, 'MOVEABLE_FEAST')
-    set(god_meeting, 'IMMOVEABLE_FEAST')
-    set(dd(year,1,6), 'IMMOVEABLE_FEAST');
+    set(palm_sun,      'MOVEABLE_FEAST')
+    set(ascension,     'MOVEABLE_FEAST')
+    set(pentecost,     'MOVEABLE_FEAST')
+    set(dd(year,1,6),  'IMMOVEABLE_FEAST');
+    set(god_meeting,   'IMMOVEABLE_FEAST')
     set(dd(year,3,25), 'IMMOVEABLE_FEAST');
-    set(dd(year,8,6), 'IMMOVEABLE_FEAST');
+    set(dd(year,8,6),  'IMMOVEABLE_FEAST');
     set(dd(year,8,15), 'IMMOVEABLE_FEAST');
-    set(dd(year,9,8), 'IMMOVEABLE_FEAST');
+    set(dd(year,9,8),  'IMMOVEABLE_FEAST');
     set(dd(year,9,14), 'IMMOVEABLE_FEAST');
-    set(dd(year,11,21), 'IMMOVEABLE_FEAST');
-    set(dd(year,12,25), 'IMMOVEABLE_FEAST');
-    set(dd(year,1,1), 'GREAT_FEAST');
+    set(dd(year,11,21),'IMMOVEABLE_FEAST');
+    set(dd(year,12,25),'IMMOVEABLE_FEAST');
+    set(dd(year,1,1),  'GREAT_FEAST');
     set(dd(year,6,24), 'GREAT_FEAST');
     set(dd(year,6,29), 'GREAT_FEAST');
     set(dd(year,8,29), 'GREAT_FEAST');
