@@ -15,7 +15,10 @@ add_library(${PROJECT_NAME} STATIC
   ${CMAKE_CURRENT_BINARY_DIR}/full_indiction.h
   ${CMAKE_CURRENT_BINARY_DIR}/full_indiction.cpp
 )
-target_compile_options(${PROJECT_NAME} PRIVATE $<$<CXX_COMPILER_ID:GNU>:-fconstexpr-ops-limit=3355443300>)
+target_compile_options(${PROJECT_NAME} PRIVATE
+  $<$<CXX_COMPILER_ID:GNU>:-fconstexpr-ops-limit=3355443300>
+  $<$<CXX_COMPILER_ID:Clang>:-fbracket-depth=2048>
+)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 

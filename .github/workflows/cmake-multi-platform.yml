@@ -3,7 +3,7 @@
 name: CMake on multiple platforms
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build:
@@ -50,13 +50,8 @@ jobs:
       run: sudo apt install -y lua5.4
 
     - if: ${{matrix.is_windows}}
-      run: |
-        mkdir C:\lua
-        cd C:\lua
-        iwr -outf lua.zip https://sourceforge.net/projects/luabinaries/files/5.4.8/Tools%20Executables/lua-5.4.8_Win64_bin.zip/download
-        unzip -o lua.zip
-        [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "Machine")+';'+'C:\lua', "Machine")
-      
+      run: choco install lua --version 5.4
+
     - uses: actions/checkout@v4
 
     - name: Set reusable strings
