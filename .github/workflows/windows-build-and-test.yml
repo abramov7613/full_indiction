@@ -1,0 +1,39 @@
+# This is a basic workflow that is manually triggered
+
+name: windows build-and-test
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on: [workflow_dispatch]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  job1:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Install Dependencies
+      run: |
+        cd C:\
+        iwr -outf lua-5.4.8-msvc-x64.zip https://github.com/marovira/lua/releases/download/5.4.8/lua-5.4.8-msvc-x64.zip
+        unzip -o lua-5.4.8-msvc-x64.zip
+        Copy-Item -Path "C:\lua\bin\lua.exe", "C:\lua\bin\luac.exe" -Destination "C:\Windows\system32\"
+
+    - uses: actions/checkout@v4
+
+    - name: build and test
+      run: |
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+        cmake --build build
+        cd build
+        ctest --output-on-failure
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: full_indiction
+        path: build/*full_indiction*
+        retention-days: 3
