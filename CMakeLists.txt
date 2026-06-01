@@ -43,6 +43,7 @@ if(NOT NOTEST)
   add_executable(test01
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test01.cpp
   )
+  target_compile_options(test01 PRIVATE $<$<CXX_COMPILER_ID:Clang>:-fbracket-depth=2048)
   target_compile_features(test01 PRIVATE cxx_std_23)
   target_link_libraries(test01 PRIVATE ${PROJECT_NAME} Catch2)
   add_test(NAME T01 COMMAND test01)
