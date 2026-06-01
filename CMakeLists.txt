@@ -18,7 +18,6 @@ add_library(${PROJECT_NAME} STATIC
 target_compile_options(${PROJECT_NAME} PRIVATE
   $<$<CXX_COMPILER_ID:GNU>:-fconstexpr-ops-limit=3355443300>
   $<$<CXX_COMPILER_ID:Clang>:-fbracket-depth=2048 -fconstexpr-steps=3355443300>
-  $<$<CXX_COMPILER_ID:MSVC>:/constexpr:steps3355443300 /Zm10>
 )
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
@@ -41,9 +40,7 @@ if(NOT NOTEST)
   )
   target_compile_features(Catch2 PRIVATE cxx_std_23)
   target_include_directories(Catch2 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
-  add_executable(test01
-    ${CMAKE_CURRENT_SOURCE_DIR}/test/test01.cpp
-  )
+  add_executable(test01 ${CMAKE_CURRENT_SOURCE_DIR}/test/test01.cpp)
   target_compile_options(test01 PRIVATE $<$<CXX_COMPILER_ID:Clang>:-fbracket-depth=2048>)
   target_compile_features(test01 PRIVATE cxx_std_23)
   target_link_libraries(test01 PRIVATE ${PROJECT_NAME} Catch2)

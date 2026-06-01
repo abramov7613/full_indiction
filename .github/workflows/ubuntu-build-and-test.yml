@@ -31,8 +31,5 @@ jobs:
       uses: actions/upload-artifact@v7.0.1
       with:
         name: full_indiction
-        path: |
-          build/full_indiction.h
-          build/full_indiction.cpp
-          build/*full_indiction*.a
+        path: build/*full_indiction*
         retention-days: 3
