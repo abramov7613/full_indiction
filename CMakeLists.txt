@@ -18,8 +18,7 @@ add_library(${PROJECT_NAME} STATIC
 target_compile_options(${PROJECT_NAME} PRIVATE
   $<$<CXX_COMPILER_ID:GNU>:-fconstexpr-ops-limit=3355443300>
   $<$<CXX_COMPILER_ID:Clang>:-fbracket-depth=2048 -fconstexpr-steps=3355443300>
-  $<$<CXX_COMPILER_ID:MSVC>:/constexpr:steps3355443300>
-  $<$<CXX_COMPILER_ID:MSVC>:/Zm1000>
+  $<$<CXX_COMPILER_ID:MSVC>:/constexpr:steps3355443300 /Zm10>
 )
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
