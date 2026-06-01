@@ -51,7 +51,7 @@ jobs:
 
     - if: ${{matrix.is_windows}}
       run: |
-        cd C:\Program Files
+        cd "C:\Program Files"
         iwr -outf lua-5.4.8-msvc-x64.zip https://github.com/marovira/lua/releases/download/5.4.8/lua-5.4.8-msvc-x64.zip
         unzip -o lua-5.4.8-msvc-x64.zip
 
