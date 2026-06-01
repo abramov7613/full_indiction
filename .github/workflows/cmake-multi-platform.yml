@@ -55,6 +55,8 @@ jobs:
         iwr -outf lua-5.4.8-msvc-x64.zip https://github.com/marovira/lua/releases/download/5.4.8/lua-5.4.8-msvc-x64.zip
         unzip -o lua-5.4.8-msvc-x64.zip
         [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "Machine")+';'+'C:\lua\bin', "Machine")
+        $Env:Path
+        Get-ChildItem -Path "C:\"
 
     - uses: actions/checkout@v4
 
