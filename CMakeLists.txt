@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 3.25)
 project(full_indiction)
 option(NOTEST "" OFF)
 
-find_program(LUA_54_EXE lua5.4 REQUIRED)
+find_program(LUA_EXECUTABLE NAMES lua5.4 lua54 lua5.5 lua55 lua REQUIRED)
 add_custom_command(
   OUTPUT full_indiction.h full_indiction.cpp
-  COMMAND ${LUA_54_EXE} ${CMAKE_CURRENT_SOURCE_DIR}/gen_src.lua full_indiction.h full_indiction.cpp
+  COMMAND ${LUA_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/gen_src.lua full_indiction.h full_indiction.cpp
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/gen_src.lua
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   VERBATIM
@@ -31,12 +31,16 @@ if(NOT NOTEST)
     ${CMAKE_CURRENT_BINARY_DIR}/catch_amalgamated.hpp
     EXPECTED_HASH SHA256=0393e18c86d62bf29c11a5329d8054285fe59516a59ac02df20b9dadf3a63566
   )
-  add_executable(test01
+  add_library(Catch2 SHARED
     ${CMAKE_CURRENT_BINARY_DIR}/catch_amalgamated.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/catch_amalgamated.hpp
+  )
+  target_compile_features(Catch2 PRIVATE cxx_std_23)
+  target_include_directories(Catch2 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+  add_executable(test01
     ${CMAKE_CURRENT_SOURCE_DIR}/test/test01.cpp
   )
   target_compile_features(test01 PRIVATE cxx_std_23)
-  target_link_libraries(test01 PRIVATE ${PROJECT_NAME})
+  target_link_libraries(test01 PRIVATE ${PROJECT_NAME} Catch2)
   add_test(NAME T01 COMMAND test01)
 endif()
